@@ -207,5 +207,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@grondo](https://github.com/grondo/)
 * [@jan-janssen](https://github.com/jan-janssen/)
 
