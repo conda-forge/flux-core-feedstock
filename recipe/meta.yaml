@@ -14,7 +14,7 @@ source:
     - centos6.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [not linux]
   run_exports: 
      - {{ pin_subpackage('flux-core', max_pin='x.x') }}
@@ -49,6 +49,9 @@ requirements:
     - python
     - czmq
     - {{ mpi }}
+    - cffi
+    - ply
+    - lua-luaposix
 
 test:
   commands:
