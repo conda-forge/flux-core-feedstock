@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
+  url: https://github.com/flux-framework/flux-core/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 9b8d7af1d8aaa7ee110bcb9815b6b8647af686de949097c9bb2a0269d5551051
   patches:
     # part of the patch is merged in https://github.com/flux-framework/flux-core/pull/5093 
@@ -14,7 +14,7 @@ source:
     - centos6.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [not linux]
   run_exports: 
      - {{ pin_subpackage('flux-core', max_pin='x.x') }}
@@ -25,6 +25,10 @@ requirements:
     - make 
     - pkgconfig
     - jq
+    - libtool
+    - m4
+    - autoconf
+    - automake
   host:
     - python
     - zeromq
