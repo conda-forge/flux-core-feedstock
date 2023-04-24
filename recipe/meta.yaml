@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 9b8d7af1d8aaa7ee110bcb9815b6b8647af686de949097c9bb2a0269d5551051
+  sha256: d9ecf562022048a83161b65df07047673626d8ece515546e45a19c269fb17726
   patches:
     # part of the patch is merged in https://github.com/flux-framework/flux-core/pull/5093 
     # the rest is related to SEEK_DATA not being available in the conda clib. 
