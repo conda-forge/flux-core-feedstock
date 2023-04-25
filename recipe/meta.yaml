@@ -18,6 +18,8 @@ build:
   skip: true  # [not linux]
   run_exports: 
      - {{ pin_subpackage('flux-core', max_pin='x.x') }}
+  script_env:
+     - FLUX_VERSION={{ version }}
 
 requirements:
   build:
