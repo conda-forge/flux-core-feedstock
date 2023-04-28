@@ -53,6 +53,7 @@ requirements:
     - ply
     - lua-luaposix
     - pyyaml
+    - jsonschema 
 
 test:
   commands:
