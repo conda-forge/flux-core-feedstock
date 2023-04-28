@@ -14,7 +14,7 @@ source:
     - centos6.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [not linux]
   run_exports: 
      - {{ pin_subpackage('flux-core', max_pin='x.x') }}
@@ -52,6 +52,8 @@ requirements:
     - cffi
     - ply
     - lua-luaposix
+    - pyyaml
+    - jsonschema 
 
 test:
   commands:
