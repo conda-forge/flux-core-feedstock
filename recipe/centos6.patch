@@ -155,23 +155,3 @@ index b4a17c3ea..55fd57ffd 100644
      else
          fprintf (fstream, "EOF\n");
  }
-
-diff --git a/src/modules/resource/exclude.c b/src/modules/resource/exclude.c
-index 62326abf6..ea0f46581 100644
---- a/src/modules/resource/exclude.c
-+++ b/src/modules/resource/exclude.c
-@@ -83,13 +83,13 @@ int exclude_update (struct exclude *exclude,
-                                         add_s) < 0) {
-             flux_log_error (h, "error posting exclude event");
-         }
--        free (add_s);
-         /*  Added exclude ranks can no longer be drained:
-          */
-         if (undrain_ranks (exclude->ctx->drain, add) < 0)
-             flux_log_error (h,
-                             "exclude: failed to undrain ranks in %s",
-                             add_s);
-+        free (add_s);
-         idset_destroy (add);
-     }
-     if (del) {
