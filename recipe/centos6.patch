@@ -1,69 +1,7 @@
-diff --git a/src/common/libutil/fileref.c b/src/common/libutil/fileref.c
-index 69213b0f0..22a4d3359 100644
---- a/src/common/libutil/fileref.c
-+++ b/src/common/libutil/fileref.c
-@@ -57,8 +57,10 @@ static int blobvec_append (json_t *blobvec,
- 
- static bool file_has_no_data (int fd)
- {
-+#if defined(SEEK_DATA)
-     if (lseek (fd, 0, SEEK_DATA) == (off_t)-1 && errno == ENXIO)
-         return true;
-+#endif
-     return false;
- }
- 
-@@ -83,19 +85,25 @@ static json_t *blobvec_create (int fd,
-         goto error;
-     }
-     while (offset < size) {
-+#if defined(SEEK_DATA)
-         // N.B. fails with ENXIO if there is no more data
-         if ((offset = lseek (fd, offset, SEEK_DATA)) == (off_t)-1) {
-             if (errno == ENXIO)
-                 break;
-             goto error;
-         }
-+#endif
-         if (offset < size) {
-             off_t notdata;
-             int blobsize;
- 
-+#if defined(SEEK_HOLE)
-             // N.B. returns size if there are no more holes
-             if ((notdata = lseek (fd, offset, SEEK_HOLE)) == (off_t)-1)
-                 goto error;
-+#else
-+	    notdata = size;
-+#endif
-             blobsize = notdata - offset;
-             if (blobsize > chunksize)
-                 blobsize = chunksize;
 diff --git a/src/common/libutil/test/fileref.c b/src/common/libutil/test/fileref.c
 index 61cb0bdfe..6fbd84d9b 100644
 --- a/src/common/libutil/test/fileref.c
 +++ b/src/common/libutil/test/fileref.c
-@@ -87,9 +87,11 @@ void rmfile (const char *name)
-  */
- bool test_sparse (void)
- {
-+    bool result = false;
-+
-+#if defined(SEEK_DATA)
-     int fd;
-     struct stat sb;
--    bool result = false;
- 
-     fd = open (mkpath ("testhole"), O_WRONLY | O_CREAT | O_TRUNC, 0600);
-     if (fd < 0)
-@@ -104,6 +106,7 @@ bool test_sparse (void)
-         result = true;
-     close (fd);
-     rmfile ("testhole");
-+#endif
-     return result;
- }
- 
 @@ -709,7 +712,8 @@ int main (int argc, char *argv[])
      test_dir ();
      test_link ();
