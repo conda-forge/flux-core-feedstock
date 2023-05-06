@@ -9,9 +9,8 @@ source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
   sha256: 77414299a7ca081199aa0f57bcaea3e05860e2095df73c0f6b7672b88fadf683
   patches:
-    # part of the patch is merged in https://github.com/flux-framework/flux-core/pull/5093 
-    # the rest is related to SEEK_DATA not being available in the conda clib. 
-    - centos6.patch
+    - centos6.patch  # This patch can be removed once the conda-forge reference is updated
+    - python311.patch  # This patch can be removed once https://github.com/flux-framework/flux-core/pull/5157 is merged
 
 build:
   number: 1
