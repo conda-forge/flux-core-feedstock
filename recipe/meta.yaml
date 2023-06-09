@@ -10,6 +10,7 @@ source:
   sha256: e57b71b708482f20d2a2195a000c0c3b9176faa6aaadfad4d2117f8671ca67ce
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
+    - signal.patch
 
 build:
   number: 0
