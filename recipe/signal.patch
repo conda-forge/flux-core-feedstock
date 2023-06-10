@@ -1,0 +1,12 @@
+diff --git a/src/cmd/flux-job.c b/src/cmd/flux-job.c
+index 6fe161801..f4ee5c70e 100644
+--- a/src/cmd/flux-job.c
++++ b/src/cmd/flux-job.c
+@@ -28,6 +28,7 @@
+ #include <jansson.h>
+ #include <argz.h>
+ #include <sys/ioctl.h>
++#include <signal.h>
+ #include <flux/core.h>
+ #include <flux/optparse.h>
+ #include <flux/hostlist.h>
