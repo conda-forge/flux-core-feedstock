@@ -58,10 +58,10 @@ index eeeb2c581..79747091d 100644
  }
  
 diff --git a/src/cmd/flux-job.c b/src/cmd/flux-job.c
-index 979c7fbf7..2eb7c7a8b 100644
+index bbbee11ee68..719a165322c 100644
 --- a/src/cmd/flux-job.c
 +++ b/src/cmd/flux-job.c
-@@ -1672,9 +1672,12 @@ static void handle_output_data (struct attach_ctx *ctx, json_t *context)
+@@ -1660,9 +1660,12 @@ static void handle_output_data (struct attach_ctx *ctx, json_t *context)
      else
          fp = stderr;
      if (len > 0) {
@@ -72,17 +72,17 @@ index 979c7fbf7..2eb7c7a8b 100644
 +        rc = fwrite (data, len, 1, fp);
 +        (void) rc;
 +
-         fflush (fp);
-     }
-     free (data);
-@@ -2205,7 +2208,9 @@ void handle_exec_log_msg (struct attach_ctx *ctx, double ts, json_t *context)
+         /*  If attached to a pty, terminal is in raw mode so a carriage
+          *  return will be necessary to return cursor to the start of line.
+          */
+@@ -2217,7 +2220,9 @@ void handle_exec_log_msg (struct attach_ctx *ctx, double ts, json_t *context)
                   rank,
                   stream);
      }
 -    fwrite (data, len, 1, stderr);
 +    int rc = fwrite (data, len, 1, stderr);
 +    (void) rc;
-+    
++
  }
  
  static struct idset *all_taskids (const struct taskmap *map)
