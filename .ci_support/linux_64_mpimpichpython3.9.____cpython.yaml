@@ -37,4 +37,4 @@ sqlite:
 target_platform:
 - linux-64
 zeromq:
-- 4.3.4
+- 4.3.5
