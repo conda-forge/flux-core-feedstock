@@ -1,8 +1,26 @@
+From d1625cea81197b855f433ba77cf0e15300c3df16 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Tue, 6 Feb 2024 20:44:25 +0100
+Subject: [PATCH] conda-forge patch
+
+---
+ src/cmd/flux-exec.c                   |  4 +++-
+ src/cmd/flux-job.c                    |  7 +++++--
+ src/common/libflux/message.c          | 14 +++++---------
+ src/common/libsubprocess/subprocess.c |  6 ++++--
+ src/common/libutil/test/fileref.c     |  3 ++-
+ src/modules/kvs/cache.c               |  4 +---
+ src/shell/output.c                    |  4 +++-
+ t/rexec/rexec_count_stdout.c          |  6 ++++--
+ t/rexec/rexec_getline.c               |  6 ++++--
+ t/t2260-job-list.t                    | 13 +------------
+ 10 files changed, 32 insertions(+), 35 deletions(-)
+
 diff --git a/src/cmd/flux-exec.c b/src/cmd/flux-exec.c
-index 345fde665..5073920e8 100644
+index b7fadafb5011..2f2cf16566d4 100644
 --- a/src/cmd/flux-exec.c
 +++ b/src/cmd/flux-exec.c
-@@ -206,9 +206,12 @@ void output_cb (flux_subprocess_t *p, const char *stream)
+@@ -208,9 +208,11 @@ void output_cb (flux_subprocess_t *p, const char *stream)
          log_err_exit ("flux_subprocess_getline");
  
      if (lenp) {
@@ -12,15 +30,14 @@ index 345fde665..5073920e8 100644
 -        fwrite (ptr, lenp, 1, fstream);
 +        rc = fwrite (ptr, lenp, 1, fstream);
 +        (void) rc;
-+
      }
  }
  
 diff --git a/src/cmd/flux-job.c b/src/cmd/flux-job.c
-index 4e5f8f394..6300cb1f1 100644
+index 79e5b056e522..b5afd1efe822 100644
 --- a/src/cmd/flux-job.c
 +++ b/src/cmd/flux-job.c
-@@ -1701,9 +1701,12 @@ static void handle_output_data (struct attach_ctx *ctx, json_t *context)
+@@ -1703,9 +1703,11 @@ static void handle_output_data (struct attach_ctx *ctx, json_t *context)
      else
          fp = stderr;
      if (len > 0) {
@@ -30,23 +47,21 @@ index 4e5f8f394..6300cb1f1 100644
 -        fwrite (data, len, 1, fp);
 +        rc = fwrite (data, len, 1, fp);
 +        (void) rc;
-+
          /*  If attached to a pty, terminal is in raw mode so a carriage
           *  return will be necessary to return cursor to the start of line.
           */
-@@ -2258,7 +2261,9 @@ void handle_exec_log_msg (struct attach_ctx *ctx, double ts, json_t *context)
+@@ -2260,7 +2262,8 @@ void handle_exec_log_msg (struct attach_ctx *ctx, double ts, json_t *context)
                   rank,
                   stream);
      }
 -    fwrite (data, len, 1, stderr);
 +    int rc = fwrite (data, len, 1, stderr);
 +    (void) rc;
-+
  }
  
  static struct idset *all_taskids (const struct taskmap *map)
 diff --git a/src/common/libflux/message.c b/src/common/libflux/message.c
-index 7191d3996..765dda11c 100644
+index 7191d3996e40..765dda11c3f0 100644
 --- a/src/common/libflux/message.c
 +++ b/src/common/libflux/message.c
 @@ -1241,12 +1241,10 @@ static void flags2str (int flags, char *buf, int buflen)
@@ -82,54 +97,11 @@ index 7191d3996..765dda11c 100644
  }
  
  void flux_msg_fprint_ts (FILE *f, const flux_msg_t *msg, double timestamp)
-diff --git a/src/common/librlist/rhwloc.c b/src/common/librlist/rhwloc.c
-index 30ee80c8a..45badacc7 100644
---- a/src/common/librlist/rhwloc.c
-+++ b/src/common/librlist/rhwloc.c
-@@ -61,7 +61,7 @@ static int init_topo_from_xml (hwloc_topology_t *tp,
-                                unsigned long flags)
- {
-     if ((topo_init_common (tp, flags) < 0)
--        || (hwloc_topology_set_xmlbuffer (*tp, xml, strlen (xml) + 1) < 0)
-+        || (hwloc_topology_set_xmlbuffer (*tp, xml, strlen (xml)) < 0)
-         || (hwloc_topology_load (*tp) < 0)) {
-         hwloc_topology_destroy (*tp);
-         return (-1);
-diff --git a/src/common/librouter/test/sendfd.c b/src/common/librouter/test/sendfd.c
-index c0a892a87..bd5b571a9 100644
---- a/src/common/librouter/test/sendfd.c
-+++ b/src/common/librouter/test/sendfd.c
-@@ -65,19 +65,25 @@ void test_large (void)
-     const char *topic;
-     const void *buf2;
-     int buf2len;
-+#if defined(F_GETPIPE_SZ)
-     int min_size = 16384;
-     int size;
-+#endif
- 
-     memset (buf, 0x0f, sizeof (buf));
- 
-     if (pipe2 (pfd, O_CLOEXEC) < 0)
-         BAIL_OUT ("pipe2 failed");
- 
-+#if defined(F_GETPIPE_SZ)
-     size = fcntl (pfd[1], F_GETPIPE_SZ);
-     if (size < min_size)
-         (void)fcntl (pfd[1], F_SETPIPE_SZ, min_size);
-     size = fcntl (pfd[1], F_GETPIPE_SZ);
-     skip (size < min_size, 4, "%d byte pipe is too small", size);
-+#else
-+    skip (true, 4, "F_GETPIPE_SZ not defined");
-+#endif
-     if (!(msg = flux_request_encode_raw ("foo.bar", buf, sizeof (buf))))
-         BAIL_OUT ("flux_request_encode failed");
-     ok (sendfd (pfd[1], msg, NULL) == 0,
 diff --git a/src/common/libsubprocess/subprocess.c b/src/common/libsubprocess/subprocess.c
-index 6b920cac4..6214344ee 100644
+index 1c3a313a2778..ec93c40946dd 100644
 --- a/src/common/libsubprocess/subprocess.c
 +++ b/src/common/libsubprocess/subprocess.c
-@@ -263,8 +263,11 @@ void flux_standard_output (flux_subprocess_t *p, const char *stream)
+@@ -263,8 +263,10 @@ void flux_standard_output (flux_subprocess_t *p, const char *stream)
          }
      }
  
@@ -138,13 +110,12 @@ index 6b920cac4..6214344ee 100644
 +    if (lenp) {
 +        int rc = fwrite (ptr, lenp, 1, fstream);
 +        (void) rc;
-+
 +    }
  }
  
  /*
 diff --git a/src/common/libutil/test/fileref.c b/src/common/libutil/test/fileref.c
-index ee4656109..e7c792a8e 100644
+index ee4656109480..e7c792a8e10f 100644
 --- a/src/common/libutil/test/fileref.c
 +++ b/src/common/libutil/test/fileref.c
 @@ -737,7 +737,8 @@ int main (int argc, char *argv[])
@@ -158,22 +129,22 @@ index ee4656109..e7c792a8e 100644
      test_pretty_print ();
  
 diff --git a/src/modules/kvs/cache.c b/src/modules/kvs/cache.c
-index 2b6d05c81..9c314cbf2 100644
+index 2b6d05c817da..07c1b0c4bd7c 100644
 --- a/src/modules/kvs/cache.c
 +++ b/src/modules/kvs/cache.c
-@@ -365,10 +365,8 @@ struct cache_entry *cache_lookup (struct cache *cache, const char *ref)
+@@ -365,10 +365,9 @@ struct cache_entry *cache_lookup (struct cache *cache, const char *ref)
  
  int cache_insert (struct cache *cache, struct cache_entry *entry)
  {
 -    int rc;
--
+ 
      if (cache && entry) {
 -        rc = zhashx_insert (cache->zhx, entry->blobref, entry);
 +        zhashx_insert (cache->zhx, entry->blobref, entry);
          list_add (&cache->entries_list, &entry->entries_node);
          entry->notdirty_list = &cache->notdirty_list;
          entry->valid_list = &cache->valid_list;
-@@ -378,7 +376,6 @@ int cache_insert (struct cache *cache, struct cache_entry *entry)
+@@ -378,7 +377,6 @@ int cache_insert (struct cache *cache, struct cache_entry *entry)
          if (entry->waitlist_valid
              && wait_queue_msgs_count (entry->waitlist_valid) > 0)
              list_add (entry->valid_list, &entry->valid_node);
@@ -182,10 +153,10 @@ index 2b6d05c81..9c314cbf2 100644
      return 0;
  }
 diff --git a/src/shell/output.c b/src/shell/output.c
-index dc3b42603..d23a17e6b 100644
+index dc3b4260326b..4fa9490e3cde 100644
 --- a/src/shell/output.c
 +++ b/src/shell/output.c
-@@ -177,8 +177,11 @@ static int shell_output_term (struct shell_output *out)
+@@ -177,8 +177,10 @@ static int shell_output_term (struct shell_output *out)
                  f = stderr;
              }
              if ((output_type == FLUX_OUTPUT_TYPE_TERM) && len > 0) {
@@ -194,27 +165,11 @@ index dc3b42603..d23a17e6b 100644
 -                fwrite (data, len, 1, f);
 +                rc = fwrite (data, len, 1, f);
 +                (void) rc;
-+
              }
              free (data);
          }
-diff --git a/src/shell/rlimit.c b/src/shell/rlimit.c
-index 24d545d4d..adb0062cb 100644
---- a/src/shell/rlimit.c
-+++ b/src/shell/rlimit.c
-@@ -58,8 +58,10 @@ static int rlimit_name_to_string (const char *name)
-         return RLIMIT_NICE;
-     if (streq (name, "rtprio"))
-         return RLIMIT_RTPRIO;
-+#ifdef RLIMIT_RTTTIME
-     if (streq (name, "rttime"))
-         return RLIMIT_RTTIME;
-+#endif
-     if (streq (name, "sigpending"))
-         return RLIMIT_SIGPENDING;
-     return -1;
 diff --git a/t/rexec/rexec_count_stdout.c b/t/rexec/rexec_count_stdout.c
-index 49a942586..cce9341c8 100644
+index 49a942586e27..cce9341c808f 100644
 --- a/t/rexec/rexec_count_stdout.c
 +++ b/t/rexec/rexec_count_stdout.c
 @@ -70,8 +70,10 @@ void output_cb (flux_subprocess_t *p, const char *stream)
@@ -231,7 +186,7 @@ index 49a942586..cce9341c8 100644
      if (!strcasecmp (stream, "stdout"))
          stdout_count++;
 diff --git a/t/rexec/rexec_getline.c b/t/rexec/rexec_getline.c
-index 9171b0224..65c30fe17 100644
+index 9171b02242c6..65c30fe1762f 100644
 --- a/t/rexec/rexec_getline.c
 +++ b/t/rexec/rexec_getline.c
 @@ -74,8 +74,10 @@ void output_cb (flux_subprocess_t *p, const char *stream)
@@ -248,13 +203,13 @@ index 9171b0224..65c30fe17 100644
          fprintf (fstream, "EOF\n");
  }
 diff --git a/t/t2260-job-list.t b/t/t2260-job-list.t
-index cd6b4cd96..f4ceb1339 100755
+index 3f5b811bf950..ddd13bceb357 100755
 --- a/t/t2260-job-list.t
 +++ b/t/t2260-job-list.t
-@@ -2216,18 +2216,7 @@ test_expect_success 'job-list returns expected jobspec changes after reload' '
- test_expect_success 'job stats in each queue correct after reload' '
- 	defaultq=`flux job stats | jq ".queues[] | select( .name == \"defaultqueue\" )"` &&
+@@ -2186,18 +2186,7 @@ test_expect_success 'job stats lists jobs in correct state in each queue' '
  	updateq=`flux job stats | jq ".queues[] | select( .name == \"updatequeue\" )"` &&
+ 	nosubmitq=`flux job stats | jq ".queues[] | select( .name == \"nosubmitqueue\" )"` &&
+ 	test -n "$nosubmitq" &&
 -	echo $defaultq | jq -e ".job_states.depend == 0" &&
 -	echo $defaultq | jq -e ".job_states.priority == 0" &&
 -	echo $defaultq | jq -e ".job_states.sched == 0" &&
@@ -271,121 +226,3 @@ index cd6b4cd96..f4ceb1339 100755
  	echo $updateq | jq -e ".job_states.depend == 0" &&
  	echo $updateq | jq -e ".job_states.priority == 0" &&
  	echo $updateq | jq -e ".job_states.sched == 0" &&
-diff --git a/t/t2710-python-cli-submit.t b/t/t2710-python-cli-submit.t
-index 26a6c358e..4077405b6 100755
---- a/t/t2710-python-cli-submit.t
-+++ b/t/t2710-python-cli-submit.t
-@@ -183,8 +183,8 @@ test_expect_success 'flux submit --output id mustache passes through to shell' '
- 	test $(jq ".attributes.system.shell.options.output.stdout.path" musid.out) = "\"foo.{{id}}\""
- '
- test_expect_success 'flux submit --cwd passes through to jobspec' '
--	flux submit --cwd=/foo/bar/baz hostname > cwd.out &&
--	jq -e ".attributes.system.cwd == \"/foo/bar/baz\""
-+	flux submit --cwd=/foo/bar/baz --dry-run hostname > cwd.out &&
-+	jq -e ".attributes.system.cwd == \"/foo/bar/baz\"" < cwd.out
- '
- test_expect_success 'flux submit command arguments work' '
- 	flux submit --dry-run a b c >args.out &&
-@@ -286,9 +286,11 @@ test_expect_success 'flux submit --tasks-per-node works' '
- 		--tasks-per-node=2 \
- 		--dry-run true > ntasks-per-node.json &&
- 	jq -e \
--	 ".attributes.system.shell.options.\"per-resource\".type == \"node\"" &&
-+	 ".attributes.system.shell.options.\"per-resource\".type == \"node\"" \
-+		< ntasks-per-node.json &&
- 	jq -e \
--	 ".attributes.system.shell.options.\"per-resource\".count == 2"
-+	 ".attributes.system.shell.options.\"per-resource\".count == 2" \
-+		< ntasks-per-node.json
- '
- test_expect_success 'flux submit --input=IDSET fails' '
- 	test_must_fail flux submit --input=0 hostname &&
-diff --git a/t/t2711-python-cli-run.t b/t/t2711-python-cli-run.t
-index a683d24fb..4ce788bdf 100755
---- a/t/t2711-python-cli-run.t
-+++ b/t/t2711-python-cli-run.t
-@@ -231,14 +231,14 @@ while read line; do
- 	per_resource=$(echo $line | awk -F== '{print $3}' | sed 's/  *$//')
- 	test_expect_success "per-resource: $args" '
- 	    echo $expected >expected.$test_count &&
--	    flux run $args --dry-run hostname > jobspec.$test_count &&
-+	    flux run $args --dry-run --env=-* hostname > jobspec.$test_count &&
- 	    $jj < jobspec.$test_count >output.$test_count &&
- 	    test_debug "cat output.$test_count" &&
- 	    test_cmp expected.$test_count output.$test_count &&
- 	    if test -n "$per_resource"; then
- 	        test_debug "echo expected $per_resource" &&
--	        jq -e ".attributes.system.shell.options.per_resource == \
--		   $per_resource"
-+	        jq -e ".attributes.system.shell.options.\"per-resource\" == \
-+		   $per_resource" < jobspec.$test_count
- 	    fi
- 	'
- done < per-resource-args.txt
-diff --git a/t/t2714-python-cli-batch.t b/t/t2714-python-cli-batch.t
-index 34f41773b..1dfaa430a 100755
---- a/t/t2714-python-cli-batch.t
-+++ b/t/t2714-python-cli-batch.t
-@@ -240,7 +240,8 @@ test_expect_success 'flux batch: file can be added via directives' '
- 	cat \$FLUX_JOB_TMPDIR/foo
- 	EOF
- 	flux batch --dry-run directives5.sh >d5.json &&
--	jq -e ".attributes.system.files.foo.data == \"This is a test file\n\""
-+	jq -e ".attributes.system.files.foo.data == \"This is a test file\n\"" \
-+		<d5.json
- '
- test_expect_success 'flux batch: multiline --add-file requires name=' '
- 	cat <<-EOF >directives6.sh &&
-diff --git a/t/t2700-mini-cmd.t b/t/t2700-mini-cmd.t
-index 52a7372ca..426cf8706 100755
---- a/t/t2700-mini-cmd.t
-+++ b/t/t2700-mini-cmd.t
-@@ -4,6 +4,9 @@ test_description='Test flux mini command'
- 
- . $(dirname $0)/sharness.sh
- 
-+skip_all='skipping all flux-mini tests under conda-forge'
-+test_done
-+
- test_under_flux 4
- 
- # Set CLIMain log level to logging.DEBUG (10), to enable stack traces
-diff --git a/t/t2701-mini-batch.t b/t/t2701-mini-batch.t
-index 8b1ab676d..72a9c5704 100755
---- a/t/t2701-mini-batch.t
-+++ b/t/t2701-mini-batch.t
-@@ -4,6 +4,8 @@ test_description='flux-mini batch specific tests'
- 
- . $(dirname $0)/sharness.sh
- 
-+skip_all='skipping all flux-mini tests under conda-forge'
-+test_done
- 
- # Start an instance with 16 cores across 4 ranks
- export TEST_UNDER_FLUX_CORES_PER_RANK=4
-diff --git a/t/t2702-mini-alloc.t b/t/t2702-mini-alloc.t
-index 153c9a3f0..43ed24411 100755
---- a/t/t2702-mini-alloc.t
-+++ b/t/t2702-mini-alloc.t
-@@ -4,6 +4,8 @@ test_description='flux-mini alloc specific tests'
- 
- . $(dirname $0)/sharness.sh
- 
-+skip_all='skipping all flux-mini tests under conda-forge'
-+test_done
- 
- # Start an instance with 16 cores across 4 ranks
- export TEST_UNDER_FLUX_CORES_PER_RANK=4
-diff --git a/t/t2703-mini-bulksubmit.t b/t/t2703-mini-bulksubmit.t
-index 197e99212..ea90ebd74 100755
---- a/t/t2703-mini-bulksubmit.t
-+++ b/t/t2703-mini-bulksubmit.t
-@@ -4,6 +4,8 @@ test_description='flux-mini bulksubmit specific tests'
- 
- . $(dirname $0)/sharness.sh
- 
-+skip_all='skipping all flux-mini tests under conda-forge'
-+test_done
- 
- # Start an instance with 16 cores across 4 ranks
- export TEST_UNDER_FLUX_CORES_PER_RANK=4
