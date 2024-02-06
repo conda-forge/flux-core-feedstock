@@ -10,7 +10,6 @@ source:
   sha256: 465d24294b92962d156ad49768ea804ff848d5c0b3470d80e07ebf24cd255f2d
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
-    - python312.patch
 
 build:
   number: 0
