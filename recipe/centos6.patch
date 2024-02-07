@@ -1,21 +1,3 @@
-From d1625cea81197b855f433ba77cf0e15300c3df16 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Tue, 6 Feb 2024 20:44:25 +0100
-Subject: [PATCH] conda-forge patch
-
----
- src/cmd/flux-exec.c                   |  4 +++-
- src/cmd/flux-job.c                    |  7 +++++--
- src/common/libflux/message.c          | 14 +++++---------
- src/common/libsubprocess/subprocess.c |  6 ++++--
- src/common/libutil/test/fileref.c     |  3 ++-
- src/modules/kvs/cache.c               |  4 +---
- src/shell/output.c                    |  4 +++-
- t/rexec/rexec_count_stdout.c          |  6 ++++--
- t/rexec/rexec_getline.c               |  6 ++++--
- t/t2260-job-list.t                    | 13 +------------
- 10 files changed, 32 insertions(+), 35 deletions(-)
-
 diff --git a/src/cmd/flux-exec.c b/src/cmd/flux-exec.c
 index b7fadafb5011..2f2cf16566d4 100644
 --- a/src/cmd/flux-exec.c
@@ -202,27 +184,3 @@ index 9171b02242c6..65c30fe1762f 100644
      else
          fprintf (fstream, "EOF\n");
  }
-diff --git a/t/t2260-job-list.t b/t/t2260-job-list.t
-index 3f5b811bf950..ddd13bceb357 100755
---- a/t/t2260-job-list.t
-+++ b/t/t2260-job-list.t
-@@ -2186,18 +2186,7 @@ test_expect_success 'job stats lists jobs in correct state in each queue' '
- 	updateq=`flux job stats | jq ".queues[] | select( .name == \"updatequeue\" )"` &&
- 	nosubmitq=`flux job stats | jq ".queues[] | select( .name == \"nosubmitqueue\" )"` &&
- 	test -n "$nosubmitq" &&
--	echo $defaultq | jq -e ".job_states.depend == 0" &&
--	echo $defaultq | jq -e ".job_states.priority == 0" &&
--	echo $defaultq | jq -e ".job_states.sched == 0" &&
--	echo $defaultq | jq -e ".job_states.run == 0" &&
--	echo $defaultq | jq -e ".job_states.cleanup == 0" &&
--	echo $defaultq | jq -e ".job_states.inactive == 0" &&
--	echo $defaultq | jq -e ".job_states.total == 0" &&
--	echo $defaultq | jq -e ".successful == 0" &&
--	echo $defaultq | jq -e ".failed == 0" &&
--	echo $defaultq | jq -e ".canceled == 0" &&
--	echo $defaultq | jq -e ".timeout == 0" &&
--	echo $defaultq | jq -e ".inactive_purged == 0" &&
-+	test -z "$defaultq" &&
- 	echo $updateq | jq -e ".job_states.depend == 0" &&
- 	echo $updateq | jq -e ".job_states.priority == 0" &&
- 	echo $updateq | jq -e ".job_states.sched == 0" &&
