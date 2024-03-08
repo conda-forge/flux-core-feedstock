@@ -15,33 +15,6 @@ index b7fadafb5011..2f2cf16566d4 100644
      }
  }
  
-diff --git a/src/cmd/flux-job.c b/src/cmd/flux-job.c
-index 79e5b056e522..b5afd1efe822 100644
---- a/src/cmd/flux-job.c
-+++ b/src/cmd/flux-job.c
-@@ -1703,9 +1703,11 @@ static void handle_output_data (struct attach_ctx *ctx, json_t *context)
-     else
-         fp = stderr;
-     if (len > 0) {
-+        int rc;
-         if (optparse_hasopt (ctx->p, "label-io"))
-             fprintf (fp, "%s: ", rank);
--        fwrite (data, len, 1, fp);
-+        rc = fwrite (data, len, 1, fp);
-+        (void) rc;
-         /*  If attached to a pty, terminal is in raw mode so a carriage
-          *  return will be necessary to return cursor to the start of line.
-          */
-@@ -2260,7 +2262,8 @@ void handle_exec_log_msg (struct attach_ctx *ctx, double ts, json_t *context)
-                  rank,
-                  stream);
-     }
--    fwrite (data, len, 1, stderr);
-+    int rc = fwrite (data, len, 1, stderr);
-+    (void) rc;
- }
- 
- static struct idset *all_taskids (const struct taskmap *map)
 diff --git a/src/common/libflux/message.c b/src/common/libflux/message.c
 index 7191d3996e40..765dda11c3f0 100644
 --- a/src/common/libflux/message.c
@@ -96,20 +69,6 @@ index 1c3a313a2778..ec93c40946dd 100644
  }
  
  /*
-diff --git a/src/common/libutil/test/fileref.c b/src/common/libutil/test/fileref.c
-index ee4656109480..e7c792a8e10f 100644
---- a/src/common/libutil/test/fileref.c
-+++ b/src/common/libutil/test/fileref.c
-@@ -737,7 +737,8 @@ int main (int argc, char *argv[])
-     test_dir ();
-     test_link ();
-     test_small ();
--    test_empty ();
-+    if (have_sparse)
-+        test_empty ();
-     test_expfail ();
-     test_pretty_print ();
- 
 diff --git a/src/modules/kvs/cache.c b/src/modules/kvs/cache.c
 index 2b6d05c817da..07c1b0c4bd7c 100644
 --- a/src/modules/kvs/cache.c
