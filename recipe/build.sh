@@ -8,7 +8,9 @@ make
 if [ "${mpi}" == "openmpi" ]; then
   export OMPI_MCA_btl=self,tcp
 fi
-make check
+if [[ -z "${CONDA_BUILD_CROSS_COMPILATION}" ]]; then
+  make check
+fi
 
 # Install 
 make install
