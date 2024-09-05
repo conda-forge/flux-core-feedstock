@@ -58,10 +58,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_mpimpichpython3.8.____cpython</td>
+              <td>linux_64_mpimpichpython3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19254&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_mpimpichpython3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_mpimpichpython3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -93,10 +93,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_mpiopenmpipython3.8.____cpython</td>
+              <td>linux_64_mpiopenmpipython3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19254&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_mpiopenmpipython3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_mpiopenmpipython3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -128,10 +128,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_mpimpichpython3.8.____cpython</td>
+              <td>linux_aarch64_mpimpichpython3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19254&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_mpimpichpython3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_mpimpichpython3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -163,10 +163,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_mpiopenmpipython3.8.____cpython</td>
+              <td>linux_aarch64_mpiopenmpipython3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19254&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_mpiopenmpipython3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flux-core-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_mpiopenmpipython3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
