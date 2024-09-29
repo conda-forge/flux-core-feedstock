@@ -17,7 +17,7 @@ docker_image:
 libarchive:
 - '3.7'
 libhwloc:
-- 2.11.1
+- 2.11.2
 libuuid:
 - '2'
 lua:
