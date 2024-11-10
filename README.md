@@ -9,7 +9,7 @@ Package license: LGPL-3.0-or-later
 
 Summary: core services for the Flux resource management framework
 
-Development: https://github.com/simplejson/simplejson
+Development: https://github.com/flux-framework
 
 Documentation: https://flux-framework.readthedocs.io/
 
