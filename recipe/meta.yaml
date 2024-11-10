@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.64.0" %}
+{% set version = "0.68.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: 0334d6191915f1b89b70cdbf14f24200f8899da31090df5f502020533b304bb3
+  sha256: fd3d0b0b13136f3914733c7f9e775372a8808d3c7c724ba076fda277a5abeae3
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
 
 build:
-  number: 2
+  number: 0
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
