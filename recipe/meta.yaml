@@ -41,6 +41,7 @@ requirements:
     - jansson
     - sphinx
     - ply
+    - libsystemd0
     - lua-luaposix
     - libuuid
     - ncurses
