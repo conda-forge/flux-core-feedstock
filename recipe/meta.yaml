@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.64.0" %}
+{% set version = "0.65.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,10 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: 0334d6191915f1b89b70cdbf14f24200f8899da31090df5f502020533b304bb3
+  sha256: a60bc7ed13b8e6d09e99176123a474aad2d9792fff6eb6fd4da2a00e1d2865ab
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
+    - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0013-config-file.patch
     - disable-test-t2274-manager-perilog.patch
@@ -19,7 +20,7 @@ source:
     - disable-test-python-t0002-wrapper.patch
 
 build:
-  number: 5
+  number: 1
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
