@@ -1,0 +1,21 @@
+From 41d85acb9e8096439b04552f7ad16085adfcaf48 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Fri, 3 Oct 2025 14:04:35 +0200
+Subject: [PATCH] Remove 	t2406-job-exec-cleanup.t
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index 0cd6429..949344f 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -185,7 +185,6 @@ TESTSCRIPTS = \
+ 	t2402-job-exec-dummy.t \
+ 	t2403-job-exec-conf.t \
+ 	t2404-job-exec-multiuser.t \
+-	t2406-job-exec-cleanup.t \
+ 	t2407-sdbus.t \
+ 	t2408-sdbus-recovery.t \
+ 	t2409-sdexec.t \

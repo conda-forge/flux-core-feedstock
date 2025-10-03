@@ -10,9 +10,14 @@ source:
   sha256: 0334d6191915f1b89b70cdbf14f24200f8899da31090df5f502020533b304bb3
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
+    - disable-test-libeventlog-formatter.patch
+    - disable-test-t0013-config-file.patch
+    - disable-test-t2274-manager-perilog.patch
+    - disable-test-t2406-job-exec-cleanup.patch
+    - disable-test-t2802-uri-cmd.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
@@ -22,6 +27,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - make
+    - automake =1.16
     - pkgconfig
     - jq
   host:

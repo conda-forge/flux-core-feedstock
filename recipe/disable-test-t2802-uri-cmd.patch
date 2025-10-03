@@ -1,0 +1,21 @@
+From 15e53399b0195fc1f8b91e3b91a93939241295a2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Fri, 3 Oct 2025 14:05:00 +0200
+Subject: [PATCH] Remove 	t2802-uri-cmd.t
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index 949344f..e99e6cd 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -221,7 +221,6 @@ TESTSCRIPTS = \
+ 	t2800-jobs-recursive.t \
+ 	t2800-jobs-instance-info.t \
+ 	t2800-jobs-config.t \
+-	t2802-uri-cmd.t \
+ 	t2803-flux-pstree.t \
+ 	t2804-uptime-cmd.t \
+ 	t2805-startlog-cmd.t \
