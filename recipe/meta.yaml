@@ -19,7 +19,7 @@ source:
     - disable-test-python-t0002-wrapper.patch
 
 build:
-  number: 4
+  number: 5
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
