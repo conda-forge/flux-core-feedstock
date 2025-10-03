@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.66.0" %}
+{% set version = "0.67.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: 0a25cfb1ebc033c249614eb2350c6fb57b00cdf3c584d0759c787f595c360daa
+  sha256: 9406e776cbeff971881143fd1b94c42ec912e5b226401d2d3d91d766dd81de8c
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
     - disable-test-libeventlog-formatter.patch
