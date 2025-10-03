@@ -9,7 +9,7 @@ source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
   sha256: 9406e776cbeff971881143fd1b94c42ec912e5b226401d2d3d91d766dd81de8c
   patches:
-    - centos6.patch  # This patch can be removed once the conda-forge reference is updated
+    - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0013-config-file.patch
@@ -20,7 +20,7 @@ source:
     - disable-test-python-t0002-wrapper.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
