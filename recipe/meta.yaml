@@ -10,6 +10,7 @@ source:
   sha256: 9406e776cbeff971881143fd1b94c42ec912e5b226401d2d3d91d766dd81de8c
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
+    - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0013-config-file.patch
     - disable-test-t2274-manager-perilog.patch
