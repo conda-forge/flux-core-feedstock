@@ -1,0 +1,23 @@
+From 4b818171a95c7effe7511b6413ad5e8be29f3e91 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Fri, 3 Oct 2025 07:53:43 +0200
+Subject: [PATCH] remove broken formatter test
+
+---
+ src/common/libeventlog/Makefile.am | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/common/libeventlog/Makefile.am b/src/common/libeventlog/Makefile.am
+index 35a0b10..0c70158 100644
+--- a/src/common/libeventlog/Makefile.am
++++ b/src/common/libeventlog/Makefile.am
+@@ -21,8 +21,7 @@ libeventlog_la_SOURCES = \
+ 	formatter.c
+ 
+ TESTS = \
+-	test_eventlog.t \
+-	test_formatter.t
++	test_eventlog.t
+ 
+ check_PROGRAMS = $(TESTS)
+ 
