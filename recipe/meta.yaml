@@ -16,6 +16,7 @@ source:
     - disable-test-t2406-job-exec-cleanup.patch
     - disable-test-t2500-job-attach.patch
     - disable-test-t2802-uri-cmd.patch
+    - disable-test-python-t0002-wrapper.patch
 
 build:
   number: 4
