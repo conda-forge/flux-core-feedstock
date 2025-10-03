@@ -30,6 +30,8 @@ requirements:
     - automake =1.16
     - pkgconfig
     - jq
+    - python
+    - setuptools
   host:
     - python
     - zeromq
