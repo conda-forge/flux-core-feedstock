@@ -1,0 +1,22 @@
+From 9c7a3b5632613fe0a8a9ef61500f23402d79d233 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Fri, 3 Oct 2025 15:59:12 +0200
+Subject: [PATCH] enable cross compiling
+
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure b/configure
+index 3b34720..886eb08 100755
+--- a/configure
++++ b/configure
+@@ -610,7 +610,7 @@ ac_default_prefix=/usr/local
+ ac_clean_files=
+ ac_config_libobj_dir=.
+ LIBOBJS=
+-cross_compiling=no
++cross_compiling=yes
+ subdirs=
+ MFLAGS=
+ MAKEFLAGS=
