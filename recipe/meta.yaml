@@ -23,7 +23,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - make
-    - automake
+    - automake =1.16
     - pkgconfig
     - jq
   host:
