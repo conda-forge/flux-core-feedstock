@@ -29,6 +29,8 @@ requirements:
     - {{ stdlib("c") }}
     - make
     - automake =1.16
+    - autoconf
+    - libtool
     - pkgconfig
     - jq
   host:
