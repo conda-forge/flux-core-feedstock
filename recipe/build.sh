@@ -1,6 +1,7 @@
 #!/bin/bash
 # Build 
 export CPPFLAGS="-D_FORTIFY_SOURCE=2 -O2 -isystem $PREFIX/include"
+autoreconf -i
 ./configure --prefix=${PREFIX}
 make
 
