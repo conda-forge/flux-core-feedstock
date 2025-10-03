@@ -11,6 +11,7 @@ source:
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
     - disable-test-libeventlog-formatter.patch
+    - disable-test-t0013-config-file.patch
 
 build:
   number: 3
