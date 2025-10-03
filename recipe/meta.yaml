@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: 023fd3e2153e20ba28cdf60fefa14d60053df61de3b9e273bf6f9a9ebdef0b52
+  sha256: 9159ccb64826b23391abe7c125a9e2ccaa1eb6409eeb2fd2a6ee4be07bf39e56
   patches:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
     - disable-test-libeventlog-formatter.patch
