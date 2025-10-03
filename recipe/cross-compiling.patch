@@ -1,22 +1,22 @@
-From 9c7a3b5632613fe0a8a9ef61500f23402d79d233 Mon Sep 17 00:00:00 2001
+From 1f0ff493aad771016a763f6a5cbb97ae489161c2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Fri, 3 Oct 2025 15:59:12 +0200
-Subject: [PATCH] enable cross compiling
+Date: Fri, 3 Oct 2025 16:40:28 +0200
+Subject: [PATCH] zero message queue patch
 
 ---
- configure | 2 +-
+ configure.ac | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/configure b/configure
-index 3b34720..886eb08 100755
---- a/configure
-+++ b/configure
-@@ -610,7 +610,7 @@ ac_default_prefix=/usr/local
- ac_clean_files=
- ac_config_libobj_dir=.
- LIBOBJS=
--cross_compiling=no
-+cross_compiling=yes
- subdirs=
- MFLAGS=
- MAKEFLAGS=
+diff --git a/configure.ac b/configure.ac
+index d7d513f..cf5e333 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -333,7 +333,7 @@ AM_CONDITIONAL([ENABLE_PYLINT], [test "x$PYLINT" = "xpylint"])
+ AX_PROG_LUA([5.1],[5.5])
+ AX_LUA_HEADERS
+ AX_LUA_LIBS
+-X_AC_ZEROMQ
++PKG_CHECK_MODULES([ZMQ], [libzmq >= 4.0.4])
+ X_AC_JANSSON
+ PKG_CHECK_MODULES([LIBSYSTEMD], [libsystemd >= 0.23],
+                                 [have_libsystemd=yes], [have_libsystemd=no])
