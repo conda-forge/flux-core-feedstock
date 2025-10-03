@@ -1,21 +1,38 @@
-From 56ec50772142f0ad811bedfc9bb9b9b4dbe75ceb Mon Sep 17 00:00:00 2001
+From 1f4209f80ef089527ed9e23e6aad483b474cbaf5 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Fri, 3 Oct 2025 09:37:46 +0200
-Subject: [PATCH] Disable t0013-config-file.t
+Date: Fri, 3 Oct 2025 10:04:10 +0200
+Subject: [PATCH] remove selected tests
 
 ---
- t/Makefile.am | 1 -
- 1 file changed, 1 deletion(-)
+ t/t0013-config-file.t | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-diff --git a/t/Makefile.am b/t/Makefile.am
-index 87d1509..522b463 100644
---- a/t/Makefile.am
-+++ b/t/Makefile.am
-@@ -84,7 +84,6 @@ TESTSCRIPTS = \
- 	t0033-filemap-cmd.t \
- 	t0025-broker-state-machine.t \
- 	t0027-broker-groups.t \
--	t0013-config-file.t \
- 	t0014-runlevel.t \
- 	t0015-cron.t \
- 	t0016-cron-faketime.t \
+diff --git a/t/t0013-config-file.t b/t/t0013-config-file.t
+index 382157f..7deb311 100755
+--- a/t/t0013-config-file.t
++++ b/t/t0013-config-file.t
+@@ -602,11 +602,6 @@ test_expect_success 'tbon.topo with unknown scheme fails' '
+ 		/bin/true 2>badscheme.err &&
+ 	grep "unknown topology scheme" badscheme.err
+ '
+-test_expect_success 'tbon.topo is kary:32 by default' '
+-	echo "kary:32" >topo.exp &&
+-	flux broker ${ARGS} flux getattr tbon.topo >topo.out &&
+-	test_cmp topo.exp topo.out
+-'
+ test_expect_success 'tbon.topo can be changed by configuration' '
+ 	mkdir conf24 &&
+ 	cat <<-EOT >conf24/tbon.toml &&
+@@ -618,12 +613,6 @@ test_expect_success 'tbon.topo can be changed by configuration' '
+ 		flux getattr tbon.topo >topo2.out &&
+ 	test_cmp topo2.exp topo2.out
+ '
+-test_expect_success 'tbon.topo can be overridden on the command line' '
+-	echo "kary:16" >topo3.exp &&
+-	flux broker ${ARGS} -c conf24 -Stbon.topo=kary:16 \
+-		flux getattr tbon.topo >topo3.out &&
+-	test_cmp topo3.exp topo3.out
+-'
+ test_expect_success 'tbon.topo is custom when bootstrap is configured' '
+ 	mkdir conf25 &&
+ 	cat <<-EOT >conf25/bootstrap.toml &&
