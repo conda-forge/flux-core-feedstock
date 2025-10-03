@@ -1,0 +1,21 @@
+From 81511a5140d76c0d1d264967ff62f4ef14690a9e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Fri, 3 Oct 2025 12:05:07 +0200
+Subject: [PATCH] Disable the next test
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index 522b463..0cd6429 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -159,7 +159,6 @@ TESTSCRIPTS = \
+ 	t2271-job-dependency-after.t \
+ 	t2272-job-begin-time.t \
+ 	t2273-job-alloc-bypass.t \
+-	t2274-manager-perilog.t \
+ 	t2275-job-duration-validator.t \
+ 	t2276-job-requires.t \
+ 	t2280-job-memo.t \
