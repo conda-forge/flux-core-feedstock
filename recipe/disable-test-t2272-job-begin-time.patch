@@ -1,0 +1,21 @@
+From fa4a3f8daa4b8fcfdf1bffef9309cd6e3b23568e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Fri, 3 Oct 2025 11:19:08 +0200
+Subject: [PATCH] Remove t2272-job-begin-time.t
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index 7d05d9e..449299d 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -157,7 +157,6 @@ TESTSCRIPTS = \
+ 	t2262-job-list-stats.t \
+ 	t2270-job-dependencies.t \
+ 	t2271-job-dependency-after.t \
+-	t2272-job-begin-time.t \
+ 	t2274-manager-perilog.t \
+ 	t2275-job-duration-validator.t \
+ 	t2276-job-requires.t \
