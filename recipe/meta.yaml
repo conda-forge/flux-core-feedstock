@@ -12,9 +12,7 @@ source:
     - centos6.patch  # This patch can be removed once the conda-forge reference is updated
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0013-config-file.patch
-    - disable-test-t2273-job-alloc-bypass.patch
-    - disable-test-t2272-job-begin-time.patch
-    - disable-test-t2271-job-dependency-after.patch
+    - disable-test-t2274-manager-perilog.patch
 
 build:
   number: 3
