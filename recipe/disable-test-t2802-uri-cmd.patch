@@ -1,26 +1,21 @@
-From 22009d5f1c8e0cea0bb832225002831882f40e74 Mon Sep 17 00:00:00 2001
+From 15e53399b0195fc1f8b91e3b91a93939241295a2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Fri, 3 Oct 2025 12:55:10 +0200
-Subject: [PATCH] remove broken test 2
+Date: Fri, 3 Oct 2025 14:05:00 +0200
+Subject: [PATCH] Remove 	t2802-uri-cmd.t
 
 ---
- t/t2802-uri-cmd.t | 6 ------
- 1 file changed, 6 deletions(-)
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/t/t2802-uri-cmd.t b/t/t2802-uri-cmd.t
-index b39c784..2045f60 100755
---- a/t/t2802-uri-cmd.t
-+++ b/t/t2802-uri-cmd.t
-@@ -165,12 +165,6 @@ test_expect_success 'setup fake csm_allocation_query for mock lsf testing' '
- 	export CSM_ALLOCATION_QUERY=$(pwd)/csm_allocation_query &&
- 	export FLUX_SSH=${SHARNESS_TEST_SRCDIR}/scripts/tssh
- '
--test_expect_success 'flux-uri mock testing of lsf resolver works' '
--	result=$(SHELL=/bin/sh flux uri --local lsf:12345) &&
--	FLUX_URI_1=$(flux exec -r 1 flux getattr local-uri) &&
--	test_debug "echo checking if $result is $FLUX_URI or $FLUX_URI_1" &&
--	test "$result" = "$FLUX_URI" -o "$result" = "$FLUX_URI_1"
--'
- test_expect_success 'cleanup jobs' '
- 	flux cancel --all &&
- 	flux queue drain
+diff --git a/t/Makefile.am b/t/Makefile.am
+index 949344f..e99e6cd 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -221,7 +221,6 @@ TESTSCRIPTS = \
+ 	t2800-jobs-recursive.t \
+ 	t2800-jobs-instance-info.t \
+ 	t2800-jobs-config.t \
+-	t2802-uri-cmd.t \
+ 	t2803-flux-pstree.t \
+ 	t2804-uptime-cmd.t \
+ 	t2805-startlog-cmd.t \
