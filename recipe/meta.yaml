@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.74.0" %}
+{% set version = "0.75.0" %}
 
 package:
   name: {{ name|lower }}
