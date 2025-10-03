@@ -52,6 +52,7 @@ requirements:
     - lua-luaposix
     - libuuid
     - ncurses
+    - libxml2 
   run:
     - python
     - czmq
