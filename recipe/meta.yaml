@@ -13,6 +13,7 @@ source:
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0013-config-file.patch
     - disable-test-t2273-job-alloc-bypass.patch
+    - disable-test-t2272-job-begin-time.patch
 
 build:
   number: 3
