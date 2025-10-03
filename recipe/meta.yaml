@@ -30,8 +30,6 @@ requirements:
     - automake =1.16
     - pkgconfig
     - jq
-    - python
-    - setuptools
   host:
     - python
     - zeromq
@@ -47,6 +45,7 @@ requirements:
     - pyyaml
     - czmq
     - jansson
+    - setuptools
     - sphinx
     - ply
     - lua-luaposix
