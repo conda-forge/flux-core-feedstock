@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.68.0" %}
+{% set version = "0.69.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,13 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: fd3d0b0b13136f3914733c7f9e775372a8808d3c7c724ba076fda277a5abeae3
+  sha256: c44fe9c41e54c2a7dcde24c660c07c8b422072540add0447cbba867719e167b5
   patches:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0005-exec.patch
     - disable-test-t0013-config-file.patch
-    - disable-test-t2274-manager-perilog.patch
     - disable-test-t2406-job-exec-cleanup.patch
     - disable-test-t2500-job-attach.patch
     - disable-test-t2802-uri-cmd.patch
