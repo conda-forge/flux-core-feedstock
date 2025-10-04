@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: 023fd3e2153e20ba28cdf60fefa14d60053df61de3b9e273bf6f9a9ebdef0b52
+  sha256: 1642d9f93cca6e0e934b534609787a31753462215ab376d190cdced16c386524
   patches:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
