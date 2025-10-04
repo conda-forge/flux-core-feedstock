@@ -39,43 +39,6 @@ index 98a9699d4..8a28450bc 100644
      test_expfail ();
      test_pretty_print ();
  
-diff --git a/src/common/libflux/message.c b/src/common/libflux/message.c
-index 7191d3996..765dda11c 100644
---- a/src/common/libflux/message.c
-+++ b/src/common/libflux/message.c
-@@ -1241,12 +1241,10 @@ static void flags2str (int flags, char *buf, int buflen)
- 
- static void userid2str (uint32_t userid, char *buf, int buflen)
- {
--    int n;
-     if (userid == FLUX_USERID_UNKNOWN)
--        n = snprintf (buf, buflen, "unknown");
-+        snprintf (buf, buflen, "unknown");
-     else
--        n = snprintf (buf, buflen, "%u", userid);
--    assert (n < buflen);
-+        snprintf (buf, buflen, "%u", userid);
- }
- 
- static int roletostr (uint32_t role, const char *sep, char *buf, int buflen)
-@@ -1286,14 +1284,12 @@ static void rolemask2str (uint32_t rolemask, char *buf, int buflen)
- 
- static void nodeid2str (uint32_t nodeid, char *buf, int buflen)
- {
--    int n;
-     if (nodeid == FLUX_NODEID_ANY)
--        n = snprintf (buf, buflen, "any");
-+        snprintf (buf, buflen, "any");
-     else if (nodeid == FLUX_NODEID_UPSTREAM)
--        n = snprintf (buf, buflen, "upstream");
-+        snprintf (buf, buflen, "upstream");
-     else
--        n = snprintf (buf, buflen, "%u", nodeid);
--    assert (n < buflen);
-+        snprintf (buf, buflen, "%u", nodeid);
- }
- 
- void flux_msg_fprint_ts (FILE *f, const flux_msg_t *msg, double timestamp)
 diff --git a/src/common/libsubprocess/subprocess.c b/src/common/libsubprocess/subprocess.c
 index 71e599792..2f33d933b 100644
 --- a/src/common/libsubprocess/subprocess.c
@@ -94,22 +57,22 @@ index 71e599792..2f33d933b 100644
  
  /*
 diff --git a/src/modules/kvs/cache.c b/src/modules/kvs/cache.c
-index a66c80ea4..38b6d95a8 100644
+index 2b6e82d..b7354c5 100644
 --- a/src/modules/kvs/cache.c
 +++ b/src/modules/kvs/cache.c
-@@ -365,10 +365,9 @@ struct cache_entry *cache_lookup (struct cache *cache, const char *ref)
+@@ -365,10 +365,8 @@ struct cache_entry *cache_lookup (struct cache *cache, const char *ref)
  
  int cache_insert (struct cache *cache, struct cache_entry *entry)
  {
--    int rc;
- 
+-    __attribute__((unused)) int rc;
+-
      if (cache && entry) {
 -        rc = zhashx_insert (cache->zhx, entry->blobref, entry);
 +        zhashx_insert (cache->zhx, entry->blobref, entry);
          list_add (&cache->entries_list, &entry->entries_node);
          entry->notdirty_list = &cache->notdirty_list;
          entry->valid_list = &cache->valid_list;
-@@ -378,7 +377,6 @@ int cache_insert (struct cache *cache, struct cache_entry *entry)
+@@ -378,7 +376,6 @@ int cache_insert (struct cache *cache, struct cache_entry *entry)
          if (entry->waitlist_valid
              && wait_queue_msgs_count (entry->waitlist_valid) > 0)
              list_add (entry->valid_list, &entry->valid_node);
@@ -117,22 +80,6 @@ index a66c80ea4..38b6d95a8 100644
      }
      return 0;
  }
-diff --git a/src/shell/output.c b/src/shell/output.c
-index ce86bef75..05bc18148 100644
---- a/src/shell/output.c
-+++ b/src/shell/output.c
-@@ -167,8 +167,10 @@ static int shell_output_term (struct shell_output *out)
-                 f = stderr;
-             }
-             if ((output_type == FLUX_OUTPUT_TYPE_TERM) && len > 0) {
-+                int rc;
-                 fprintf (f, "%s: ", rank);
--                fwrite (data, len, 1, f);
-+                rc = fwrite (data, len, 1, f);
-+                (void) rc;
-             }
-             free (data);
-         }
 diff --git a/t/rexec/rexec_count_stdout.c b/t/rexec/rexec_count_stdout.c
 index 9a5c0f2a6..35b7fe61c 100644
 --- a/t/rexec/rexec_count_stdout.c
