@@ -40,6 +40,7 @@ requirements:
     - libarchive
     - lua
     - libhwloc
+    - libxml2-devel
     - sqlite
     - cffi
     - jsonschema
