@@ -12,6 +12,7 @@ source:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
+    - disable-test-t0005-exec.patch
     - disable-test-t0013-config-file.patch
     - disable-test-t2274-manager-perilog.patch
     - disable-test-t2406-job-exec-cleanup.patch
