@@ -1,20 +1,20 @@
-From ba8c03573c5f70538b9de3927e863fdc2dd3225c Mon Sep 17 00:00:00 2001
+From 696babf0df77073ebf4332e976fe4edacb0a2dd4 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Sat, 4 Oct 2025 15:39:27 +0200
-Subject: [PATCH] Fix t2500-job-attach.t
+Date: Sat, 4 Oct 2025 16:30:39 +0200
+Subject: [PATCH] disable t2500-job-attach.t
 
 ---
  t/Makefile.am | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/t/Makefile.am b/t/Makefile.am
-index 9de229a..eca74a5 100644
+index 9bcb804..5ad71a8 100644
 --- a/t/Makefile.am
 +++ b/t/Makefile.am
-@@ -195,7 +195,6 @@ TESTSCRIPTS = \
- 	t2409-sdexec.t \
- 	t2410-sdexec-memlimit.t \
+@@ -200,7 +200,6 @@ TESTSCRIPTS = \
  	t2411-sdexec-job.t \
+ 	t2412-sdmon.t \
+ 	t2413-sdmon-resource.t \
 -	t2500-job-attach.t \
  	t2501-job-status.t \
  	t2600-job-shell-rcalc.t \
