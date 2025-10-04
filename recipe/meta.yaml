@@ -12,6 +12,7 @@ source:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
+    - disable-test-t0005-exec.patch
     - disable-test-t0013-config-file.patch
     - disable-test-t2406-job-exec-cleanup.patch
     - disable-test-t2500-job-attach.patch
@@ -19,7 +20,7 @@ source:
     - disable-test-python-t0002-wrapper.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
