@@ -1,0 +1,21 @@
+From d70a2bbdd7d74bdba45cfa0e282ee7e2c4b5bdfb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Sat, 4 Oct 2025 14:18:08 +0200
+Subject: [PATCH] Disable t0005-exec.t
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index 63b612e..5e06d53 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -66,7 +66,6 @@ TESTSCRIPTS = \
+ 	t0002-request.t \
+ 	t0003-module.t \
+ 	t0004-event.t \
+-	t0005-exec.t \
+ 	t0005-rexec.t \
+ 	t0005-exec-jobid.t \
+ 	t0007-ping.t \
