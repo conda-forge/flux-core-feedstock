@@ -13,7 +13,6 @@ source:
     - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0013-config-file.patch
-    - disable-test-t2274-manager-perilog.patch
     - disable-test-t2406-job-exec-cleanup.patch
     - disable-test-t2500-job-attach.patch
     - disable-test-t2802-uri-cmd.patch
