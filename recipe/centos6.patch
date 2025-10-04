@@ -80,22 +80,6 @@ index 2b6e82d..b7354c5 100644
      }
      return 0;
  }
-diff --git a/src/shell/output.c b/src/shell/output.c
-index ce86bef75..05bc18148 100644
---- a/src/shell/output.c
-+++ b/src/shell/output.c
-@@ -167,8 +167,10 @@ static int shell_output_term (struct shell_output *out)
-                 f = stderr;
-             }
-             if ((output_type == FLUX_OUTPUT_TYPE_TERM) && len > 0) {
-+                int rc;
-                 fprintf (f, "%s: ", rank);
--                fwrite (data, len, 1, f);
-+                rc = fwrite (data, len, 1, f);
-+                (void) rc;
-             }
-             free (data);
-         }
 diff --git a/t/rexec/rexec_count_stdout.c b/t/rexec/rexec_count_stdout.c
 index 9a5c0f2a6..35b7fe61c 100644
 --- a/t/rexec/rexec_count_stdout.c
