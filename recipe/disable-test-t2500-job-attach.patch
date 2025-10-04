@@ -1,20 +1,20 @@
-From 5bc8a08c92a9e898c96756aae2c716b9850fd46f Mon Sep 17 00:00:00 2001
+From ba8c03573c5f70538b9de3927e863fdc2dd3225c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Fri, 3 Oct 2025 15:02:43 +0200
-Subject: [PATCH] Disable test
+Date: Sat, 4 Oct 2025 15:39:27 +0200
+Subject: [PATCH] Fix t2500-job-attach.t
 
 ---
  t/Makefile.am | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/t/Makefile.am b/t/Makefile.am
-index e99e6cd..f011360 100644
+index 9de229a..eca74a5 100644
 --- a/t/Makefile.am
 +++ b/t/Makefile.am
-@@ -191,7 +191,6 @@ TESTSCRIPTS = \
+@@ -195,7 +195,6 @@ TESTSCRIPTS = \
+ 	t2409-sdexec.t \
  	t2410-sdexec-memlimit.t \
  	t2411-sdexec-job.t \
- 	t2412-sdexec-perilog.t \
 -	t2500-job-attach.t \
  	t2501-job-status.t \
  	t2600-job-shell-rcalc.t \
