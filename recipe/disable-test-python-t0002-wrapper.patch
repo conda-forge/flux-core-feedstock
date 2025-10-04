@@ -1,21 +1,21 @@
-From d2848956c76ba59b2bdc48ae00acd740ba08907a Mon Sep 17 00:00:00 2001
+From 48f38c75c674343523305eb9c34b6b99219c26fe Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Fri, 3 Oct 2025 16:22:06 +0200
-Subject: [PATCH] python patch
+Date: Sat, 4 Oct 2025 17:26:48 +0200
+Subject: [PATCH] Remove python/t0002-wrapper.py
 
 ---
  t/Makefile.am | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/t/Makefile.am b/t/Makefile.am
-index 87d1509..6797bec 100644
+index a24d2dc..dd501f5 100644
 --- a/t/Makefile.am
 +++ b/t/Makefile.am
-@@ -262,7 +262,6 @@ TESTSCRIPTS = \
+@@ -284,7 +284,6 @@ TESTSCRIPTS = \
  	lua/t1001-timeouts.t \
  	lua/t1004-statwatcher.t \
  	python/t0001-handle.py \
 -	python/t0002-wrapper.py \
- 	python/t0003-barrier.py \
  	python/t0004-event.py \
  	python/t0005-kvs.py \
+ 	python/t0006-request.py \
