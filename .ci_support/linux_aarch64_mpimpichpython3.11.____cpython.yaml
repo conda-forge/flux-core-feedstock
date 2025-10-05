@@ -18,6 +18,8 @@ libhwloc:
 - 2.12.1
 libuuid:
 - '2'
+libxml2_devel:
+- '2.14'
 lua:
 - '5'
 lz4_c:
