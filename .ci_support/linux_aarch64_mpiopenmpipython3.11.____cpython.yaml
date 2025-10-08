@@ -44,3 +44,6 @@ target_platform:
 - linux-aarch64
 zeromq:
 - 4.3.5
+zip_keys:
+- - python
+  - channel_sources
