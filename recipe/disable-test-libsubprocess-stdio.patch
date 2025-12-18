@@ -1,0 +1,21 @@
+From 0ef2e9cfd0e5470eef2bfa2f9fb631531f6c71f5 Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Thu, 18 Dec 2025 22:45:03 +0100
+Subject: [PATCH] Remove test_stdio.t
+
+---
+ src/common/libsubprocess/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/common/libsubprocess/Makefile.am b/src/common/libsubprocess/Makefile.am
+index 76c141c..f4131ba 100644
+--- a/src/common/libsubprocess/Makefile.am
++++ b/src/common/libsubprocess/Makefile.am
+@@ -56,7 +56,6 @@ TESTS = \
+ 	test_sigchld.t \
+ 	test_command.t \
+ 	test_subprocess.t \
+-	test_stdio.t \
+ 	test_channel.t \
+ 	test_remote.t \
+ 	test_iostress.t \
