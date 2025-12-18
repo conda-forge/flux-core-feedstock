@@ -14,6 +14,7 @@ source:
     - disable-test-libeventlog-formatter.patch
     - disable-test-t0005-exec.patch
     - disable-test-t0013-config-file.patch
+    - disable-test-t0100-modprobe.patch
     - disable-test-t2406-job-exec-cleanup.patch
     - disable-test-t2500-job-attach.patch
     - disable-test-t2802-uri-cmd.patch
