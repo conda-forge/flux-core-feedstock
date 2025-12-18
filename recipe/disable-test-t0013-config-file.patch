@@ -8,13 +8,13 @@ Subject: [PATCH] Disable t0013-config-file.t
  1 file changed, 1 deletion(-)
 
 diff --git a/t/Makefile.am b/t/Makefile.am
-index 87d1509..522b463 100644
+index 5dacef2..ce559f8 100644
 --- a/t/Makefile.am
 +++ b/t/Makefile.am
-@@ -84,7 +84,6 @@ TESTSCRIPTS = \
+@@ -89,7 +89,6 @@ TESTSCRIPTS = \
  	t0025-broker-state-machine.t \
  	t0027-broker-groups.t \
-  t0040-flux-sproc.t \
+ 	t0040-flux-sproc.t \
 -	t0013-config-file.t \
  	t0014-runlevel.t \
  	t0015-cron.t \
