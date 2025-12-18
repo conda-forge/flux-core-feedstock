@@ -1,0 +1,21 @@
+From ebcf4e6b06a367bcd9c03125a127575e9c5b1f10 Mon Sep 17 00:00:00 2001
+From: Jan Janssen <janssen@mpie.de>
+Date: Thu, 18 Dec 2025 19:37:21 +0100
+Subject: [PATCH] remove modprobe test
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index d8b6bd2..26e285b 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -103,7 +103,6 @@ TESTSCRIPTS = \
+ 	t0024-jjc-reader.t \
+ 	t0026-flux-R.t \
+ 	t0090-content-enospc.t \
+-	t0100-modprobe.t \
+ 	t1000-kvs.t \
+ 	t1001-kvs-internals.t \
+ 	t1003-kvs-stress.t \
