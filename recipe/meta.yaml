@@ -12,6 +12,7 @@ source:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
     - disable-test-libeventlog-formatter.patch
+    - disable-test-libsubprocess-stdio.patch
     - disable-test-t0005-exec.patch
     - disable-test-t0013-config-file.patch
     - disable-test-t0100-modprobe.patch
