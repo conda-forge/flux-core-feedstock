@@ -15,7 +15,7 @@ docker_image:
 libarchive:
 - '3.8'
 libhwloc:
-- 2.12.1
+- 2.12.2
 libuuid:
 - '2'
 libxml2_devel:
