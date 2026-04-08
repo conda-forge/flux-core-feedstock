@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.83.1" %}
+{% set version = "0.84.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: f46afb0f4cf79ca27314b2a5cb8fd90172ecee710f10a07ea6c008a12d806541
+  sha256: 6cf45d418ff021eb38300ca594501804e1ab74fc8aabc2fd103023e1284bc3bc
   patches:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
