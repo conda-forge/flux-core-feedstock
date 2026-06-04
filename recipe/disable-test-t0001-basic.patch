@@ -5,14 +5,14 @@ Subject: [PATCH] Remove test for longer prefix command handling
 
 Removed test for commands with longer prefixes from basic tests.
 ---
- t/t0001-basic.t | 11 -----------
+ t/t1102-cmddriver.t‎ | 11 -----------
  1 file changed, 11 deletions(-)
 
-diff --git a/t/t0001-basic.t b/t/t0001-basic.t
+diff --git a/t/t1102-cmddriver.t‎ b/t/t1102-cmddriver.t‎
 index 4543f4fe2c33..43097e94913f 100755
---- a/t/t0001-basic.t
-+++ b/t/t0001-basic.t
-@@ -884,17 +884,6 @@ test_expect_success 'commands prefixed with the invalid command are favored' '
+--- a/t/t1102-cmddriver.t‎
++++ b/t/t1102-cmddriver.t‎
+@@ -231,17 +231,6 @@ test_expect_success 'commands prefixed with the invalid command are favored' '
  	test_must_fail grep "mee" invalid6.out
  '
  
