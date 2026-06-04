@@ -1,20 +1,20 @@
-From 56ec50772142f0ad811bedfc9bb9b9b4dbe75ceb Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
-Date: Fri, 3 Oct 2025 09:37:46 +0200
-Subject: [PATCH] Disable t0013-config-file.t
+From 70e92a226c07fdda1a3ab451a1beded0f5a9df3b Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Thu, 4 Jun 2026 08:02:02 +0200
+Subject: [PATCH] Remove t0013-config-file.t from Makefile.am
 
 ---
  t/Makefile.am | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/t/Makefile.am b/t/Makefile.am
-index 5dacef2..ce559f8 100644
+index 7ba85b4746be..352efcda1ac0 100644
 --- a/t/Makefile.am
 +++ b/t/Makefile.am
-@@ -89,7 +89,6 @@ TESTSCRIPTS = \
- 	t0025-broker-state-machine.t \
+@@ -93,7 +93,6 @@ TESTSCRIPTS = \
  	t0027-broker-groups.t \
  	t0040-flux-sproc.t \
+ 	t0041-broker-conf-builtin.t \
 -	t0013-config-file.t \
  	t0014-runlevel.t \
  	t0015-cron.t \
