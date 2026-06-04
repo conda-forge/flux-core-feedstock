@@ -1,20 +1,20 @@
-From ebcf4e6b06a367bcd9c03125a127575e9c5b1f10 Mon Sep 17 00:00:00 2001
-From: Jan Janssen <janssen@mpie.de>
-Date: Thu, 18 Dec 2025 19:37:21 +0100
-Subject: [PATCH] remove modprobe test
+From 5e076fa49b8c4f0a3021783838af8104ec70952e Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Thu, 4 Jun 2026 08:07:24 +0200
+Subject: [PATCH] Remove t0100-modprobe.t from Makefile
 
 ---
  t/Makefile.am | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/t/Makefile.am b/t/Makefile.am
-index d8b6bd2..26e285b 100644
+index 352efcda1ac0..40e8ee004544 100644
 --- a/t/Makefile.am
 +++ b/t/Makefile.am
-@@ -103,7 +103,6 @@ TESTSCRIPTS = \
- 	t0024-jjc-reader.t \
- 	t0026-flux-R.t \
+@@ -108,7 +108,6 @@ TESTSCRIPTS = \
+ 	t0042-rhwloc-gpu-dedup.t \
  	t0090-content-enospc.t \
+ 	t0099-admin-system-scripts.t \
 -	t0100-modprobe.t \
  	t0800-completion.t \
  	t1000-kvs.t \
