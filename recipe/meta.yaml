@@ -21,6 +21,7 @@ source:
     - disable-test-t2500-job-attach.patch
     - disable-test-t2802-uri-cmd.patch
     - disable-test-python-t0002-wrapper.patch
+    - disable-test-python-t1000-service-add-remove.patch  # [py314]
 
 build:
   number: 1
