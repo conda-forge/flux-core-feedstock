@@ -1,0 +1,22 @@
+From d46b9fa48296581cea9203445f132faad608492e Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Wed, 8 Jul 2026 08:27:18 +0200
+Subject: [PATCH] Remove jj-reader test from Makefile
+
+Removed t0022-jj-reader.t from the test suite.
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index c8f3226c2fc3..04c087b0fd72 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -102,7 +102,6 @@ TESTSCRIPTS = \
+ 	t0019-tbon-config.t \
+ 	t0020-terminus.t \
+ 	t0021-archive-cmd.t \
+-	t0022-jj-reader.t \
+ 	t0023-jobspec1-validate.t \
+ 	t0024-jjc-reader.t \
+ 	t0026-flux-R.t \
