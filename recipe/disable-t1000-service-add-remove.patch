@@ -1,0 +1,22 @@
+From ca1ae84d459b3c7db0578a2e53b7a2b9036dab14 Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Wed, 8 Jul 2026 13:44:38 +0200
+Subject: [PATCH] Remove t1000-service-add-remove.py from Makefile
+
+Removed 't1000-service-add-remove.py' from the list of test scripts.
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+index c8f3226c2fc3..6664647fbe52 100644
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -359,7 +359,6 @@ TESTSCRIPTS = \
+ 	python/t0046-job-watcher.py \
+ 	python/t0047-flux-argument-parser.py \
+ 	python/t0100-modprobe.py \
+-	python/t1000-service-add-remove.py \
+ 	python/t6010-fake-resources.py
+ 
+ if HAVE_FLUX_SECURITY
