@@ -50,31 +50,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `flux-core` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install flux-core
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install flux-core
 ```
 
-It is possible to list all of the versions of `flux-core` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add flux-core
+# for installing globally
+pixi global install flux-core
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `flux-core` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search flux-core --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search flux-core --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search flux-core --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -86,6 +128,8 @@ mamba repoquery whoneeds flux-core --channel conda-forge
 # List dependencies of `flux-core`:
 mamba repoquery depends flux-core --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
