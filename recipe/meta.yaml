@@ -24,7 +24,7 @@ source:
     - disable-test-python-t1000-service-add-remove.patch  # [py==314]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('flux-core', max_pin='x.x') }}
