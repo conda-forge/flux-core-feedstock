@@ -1,16 +1,21 @@
-{% set name = "flux-core" %}
-{% set version = "0.88.0" %}
+schema_version: 1
+
+context:
+  name: flux-core
+  version: "0.88.0"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
+  url: https://github.com/flux-framework/flux-core/releases/download/v${{ version }}/flux-core-${{ version }}.tar.gz
   sha256: e7c5a48045a0574aa330f9bf94cad0a5de47f88c206f66387bfe8fd062c21a1c
   patches:
-    - centos6.patch  # [build_platform != target_platform]
-    - cross-compiling.patch  # [build_platform != target_platform]
+    - if: build_platform != target_platform
+      then: centos6.patch
+    - if: build_platform != target_platform
+      then: cross-compiling.patch
     - disable-test-libeventlog-formatter.patch
     - disable-test-libsubprocess-stdio.patch
     - disable-test-t0005-exec.patch
@@ -21,18 +26,17 @@ source:
     - disable-test-t2500-job-attach.patch
     - disable-test-t2802-uri-cmd.patch
     - disable-test-python-t0002-wrapper.patch
-    - disable-test-python-t1000-service-add-remove.patch  # [py==314]
+    - if: match(python, "==3.14")
+      then: disable-test-python-t1000-service-add-remove.patch
 
 build:
-  number: 0
-  skip: true  # [not linux]
-  run_exports:
-    - {{ pin_subpackage('flux-core', max_pin='x.x') }}
+  number: 1
+  skip: not linux
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
     - make
     - automake =1.16
     - pkgconfig
@@ -62,30 +66,31 @@ requirements:
   run:
     - python
     - czmq
-    - {{ mpi }}
+    - ${{ mpi }}
     - cffi
     - ply
     - lua-luaposix
     - pyyaml
     - jsonschema
+  run_exports:
+    - ${{ pin_subpackage('flux-core', upper_bound='x.x') }}
 
-test:
-  commands:
-    - flux --help
+tests:
+  - script:
+      - flux --help
 
 about:
-  home: https://flux-framework.org
   summary: core services for the Flux resource management framework
   description: |
     flux-core implements the lowest level services and interfaces for the
-    Flux resource manager framework. It is intended to be the first 
-    building block used in the construction of a site-composed Flux 
+    Flux resource manager framework. It is intended to be the first
+    building block used in the construction of a site-composed Flux
     resource manager.
   license: LGPL-3.0-or-later
-  license_family: GPL
   license_file: LICENSE
-  doc_url: https://flux-framework.readthedocs.io/
-  dev_url: https://github.com/flux-framework
+  homepage: https://flux-framework.org
+  repository: https://github.com/flux-framework
+  documentation: https://flux-framework.readthedocs.io/
 
 extra:
   recipe-maintainers:
