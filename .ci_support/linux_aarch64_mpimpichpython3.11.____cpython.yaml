@@ -21,7 +21,7 @@ libuuid:
 libxml2_devel:
 - '2.15'
 lua:
-- '5'
+- '5.1'
 lz4_c:
 - '1.10'
 mpi:
