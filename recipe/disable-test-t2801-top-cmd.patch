@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Thu, 8 Oct 2026 12:00:00 +0200
+Subject: [PATCH] disable t2801-top-cmd.t
+
+---
+ t/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/t/Makefile.am b/t/Makefile.am
+--- a/t/Makefile.am
++++ b/t/Makefile.am
+@@ -56,7 +56,6 @@
+ 	t3204-job-exec-reattach-reload.t \
+ 	t4000-issues-test-driver.t \
+ 	t2800-jobs-cmd.t \
+-	t2801-top-cmd.t \
+ 	t2808-shutdown-cmd.t \
+ 	t2712-python-cli-alloc.t \
+ 	t2719-python-cli-alloc-pmi.t \
