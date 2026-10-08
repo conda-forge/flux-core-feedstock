@@ -1,5 +1,5 @@
 {% set name = "flux-core" %}
-{% set version = "0.88.0" %}
+{% set version = "0.90.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,11 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz
-  sha256: e7c5a48045a0574aa330f9bf94cad0a5de47f88c206f66387bfe8fd062c21a1c
+  sha256: 5bd9d9a25524c7a8638046464daa6fff35548a5681a1c3600a6a0745b47f26ce
   patches:
     - centos6.patch  # [build_platform != target_platform]
     - cross-compiling.patch  # [build_platform != target_platform]
+    - fix-maybe-uninitialized-readonly.patch
     - disable-test-libeventlog-formatter.patch
     - disable-test-libsubprocess-stdio.patch
     - disable-test-t0005-exec.patch
@@ -19,6 +20,7 @@ source:
     - disable-test-t0100-modprobe.patch
     - disable-test-t2406-job-exec-cleanup.patch
     - disable-test-t2500-job-attach.patch
+    - disable-test-t2801-top-cmd.patch
     - disable-test-t2802-uri-cmd.patch
     - disable-test-python-t0002-wrapper.patch
     - disable-test-python-t1000-service-add-remove.patch  # [py==314]

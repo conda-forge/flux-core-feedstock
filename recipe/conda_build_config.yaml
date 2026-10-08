@@ -1,3 +1,5 @@
 mpi:
   - mpich
   - openmpi
+lua:
+  - 5.4.6
