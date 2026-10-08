@@ -42,7 +42,7 @@ requirements:
     - zeromq
     - lz4-c
     - libarchive
-    - lua
+    - lua >=5.1,<5.5
     - libhwloc
     - libxml2-devel
     - sqlite
