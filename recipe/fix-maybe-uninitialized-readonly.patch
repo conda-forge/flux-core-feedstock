@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Thu, 8 Oct 2026 12:00:00 +0200
+Subject: [PATCH] libsubprocess: initialize readonly in flux_subprocess_getline
+
+GCC on aarch64 reports -Werror=maybe-uninitialized for 'readonly'.
+
+---
+ src/common/libsubprocess/subprocess.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/common/libsubprocess/subprocess.c b/src/common/libsubprocess/subprocess.c
+--- a/src/common/libsubprocess/subprocess.c
++++ b/src/common/libsubprocess/subprocess.c
+@@ -1051,7 +1051,7 @@
+                              const char **bufp)
+ {
+     int len;
+-    bool readonly;
++    bool readonly = false;
+ 
+     if (p && (p->flags & FLUX_SUBPROCESS_FLAGS_LOCAL_UNBUF)) {
+         errno = EPERM;
