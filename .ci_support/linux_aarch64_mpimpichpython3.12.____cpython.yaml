@@ -25,7 +25,7 @@ libxml2_devel:
 lua:
 - 5.4.6
 lz4_c:
-- '1.10'
+- '1.11'
 mpi:
 - mpich
 mpich:
